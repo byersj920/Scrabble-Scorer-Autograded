@@ -34,7 +34,7 @@ function oldScrabbleScorer(word) {
 
 let wordInput = '';
 function initialPrompt() {
-   console.log("Let's play some scrabble! Enter a word:");
+   console.log("Let's play some scrabble!");
    wordInput = input.question('Please enter a word you wish to score: ')
 };
 
@@ -100,7 +100,7 @@ function scorerPrompt() {
    while (correctOptions.includes(scoringMethodChoice) === false){
       scoringMethodChoice = input.question(`${scoringMethodChoice} is not a valid entrty. Please enter 0, 1, or 2: `);
    }
-   console.log(scoringAlgorithms[scoringMethodChoice].scorerFunction(wordInput));
+   return scoringAlgorithms[scoringMethodChoice];
 }
 
 function transform(object) {
@@ -118,10 +118,9 @@ let newPointStructure = transform(oldPointStructure);
 
 function runProgram() {
    initialPrompt();
-   scorerPrompt();
+   let chosenScoring = scorerPrompt();
+   console.log(`Score for ${wordInput}: ${chosenScoring.scorerFunction(wordInput)}.`)
 }
-
-runProgram();
 
 // Don't write any code below this line //
 // And don't change these or your program will not run as expected //
